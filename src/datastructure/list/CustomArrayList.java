@@ -50,17 +50,29 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	public boolean isEmpty() {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
 		if (size > 0) {
-			return true;
-		} else {
 			return false;
+		} else {
+			return true;
 		}
 	}
 
 	@Override
 	public boolean contains(Object o) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
+		if(o == null) {
+			return containsNull();
+		}
+		
 		for (int i = 0; i < size; i++) {
 			if (array[i].equals(o)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	private boolean containsNull() {
+		for (int i = 0; i < size; i++) {
+			if (array[i] == null) {
 				return true;
 			}
 		}
@@ -108,7 +120,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	@Override
 	public T get(int index) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
-		if (index < 0 || index >= size) {
+		if (!checkBoundries(index)) {
 			throw new IndexOutOfBoundsException();
 		} else {
 			return (T) array[index];
@@ -119,7 +131,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	public T set(int index, T element) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
 		changeArraySize();
-		if (index < 0 || index >= size) {
+		if (!checkBoundries(index)) {
 			throw new IndexOutOfBoundsException();
 		} else {
 			Object previousValue = array[index];
@@ -132,12 +144,13 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	public void add(int index, T element) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
 		changeArraySize();
-		if (index < 0 || index >= size) {
+		if (!checkBoundries(index)) {
 			throw new IndexOutOfBoundsException();
 		} else {
 			for (int i = size; i < index + 1; i--) {
 				array[i + 1] = array[i];
 			}
+			System.arraycopy(array, index, array, index +1, this.size - index);
 			array[index] = element;
 			size++;
 		}
@@ -147,7 +160,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	public T remove(int index) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
 		changeArraySize();
-		if (index < 0 || index >= size) {
+		if (!checkBoundries(index)) {
 			throw new IndexOutOfBoundsException();
 		} else {
 			Object removedObject = array[index];
@@ -168,6 +181,14 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			}
 		}
 		return -1;
+	}
+	
+	private boolean checkBoundries(int index) {
+		if (index < 0 || index >= this.size) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 	
 	public int getAllocatedSize() {
