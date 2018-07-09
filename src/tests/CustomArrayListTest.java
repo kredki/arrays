@@ -4,12 +4,26 @@ package tests;
 
 import static org.junit.Assert.*;
 import java.util.List;
+
+import javax.naming.InitialContext;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import datastructure.list.CustomArrayList;
 
 public class CustomArrayListTest {
 
+	private static List<Integer> initList;
+	
+	@BeforeClass
+	public static void InitialContext() {
+		initList = new CustomArrayList<>();
+		for(int i = 0; i < 10; i++) {
+			initList.add(i);
+		}
+	}
+	
 	@Test
 	public void zeroSizeTest() {
 		List<Integer> list = new CustomArrayList<>();
@@ -52,6 +66,5 @@ public class CustomArrayListTest {
 		assertEquals(7, list.get(7).intValue());
 		assertEquals(8, list.get(8).intValue());
 		assertEquals(9, list.get(9).intValue());
-		assertEquals(10, list.get(10).intValue());
 	}
 }

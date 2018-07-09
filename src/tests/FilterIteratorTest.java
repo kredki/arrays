@@ -53,9 +53,7 @@ public class FilterIteratorTest {
 		Iterator<Integer> iterator = new FilterIterator<>(list1, x -> x > 5);
 		iterator.next();
 		iterator.remove();
-		iterator.next();
-		iterator.remove();
 		assertEquals(1, list1.get(0).intValue());
-		assertEquals(3, list1.get(1).intValue());
+		assertEquals(15, list1.get(1).intValue());
 	}
 }
