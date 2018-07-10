@@ -247,7 +247,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			/* (TODO Starterkit 1) Please introduce a sensible implementation */
 			isNextUsed = true;
 			isRemovedUsed = false;
-			if(index >= CustomArrayList.this.size) {
+			if(index >= CustomArrayList.this.size || (index < 0 && !hasNext())) {
 				throw new NoSuchElementException();
 			} else {
 				index++;
