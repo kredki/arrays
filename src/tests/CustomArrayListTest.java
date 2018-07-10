@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import datastructure.list.CustomArrayList;
+import datastructure.list.CustomLinkedList;
 
 public class CustomArrayListTest {
 
@@ -126,5 +127,77 @@ public class CustomArrayListTest {
 		assertEquals(11, list.size());
 		assertEquals(11, list.get(1).intValue());
 		assertEquals(1, list.get(2).intValue());
+	}
+	
+	@Test
+	public void containsEmptyListTest() {
+		List<Integer> list = new CustomArrayList<>();
+		assertEquals(false, list.contains(10));
+	}
+	
+	@Test
+	public void containsNullTest() {
+		List<Integer> list = new CustomArrayList<>();
+		list.add(null);
+		assertEquals(true, list.contains(null));
+	}
+	
+	@Test
+	public void containsSizeOneListTest() {
+		List<Integer> list = new CustomArrayList<>();
+		list.add(10);
+		assertEquals(true, list.contains(10));
+	}
+	
+	@Test
+	public void removeLastTest() {
+		List<Integer> list = new CustomArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.remove(new Integer(9));
+		assertEquals(9, list.size());
+		assertEquals(8, list.get(8).intValue());
+	}
+	
+	@Test
+	public void setTest() {
+		List<Integer> list = new CustomArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.set(0, 20);
+		assertEquals(20, list.get(0).intValue());
+	}
+	
+	@Test
+	public void set2Test() {
+		List<Integer> list = new CustomArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.set(2, 20);
+		assertEquals(20, list.get(2).intValue());
+	}
+	
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void setIndexOutOfBoundriesTest() {
+		List<Integer> list = new CustomArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.set(12, 20);
+	}
+	
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void getIndexOutOfBoundriesTest() {
+		List<Integer> list = new CustomArrayList<>();
+		list.get(20);
+	}
+	
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void removeIndexOutOfBoundriesTest() {
+		List<Integer> list = new CustomArrayList<>();
+		list.remove(20);
 	}
 }

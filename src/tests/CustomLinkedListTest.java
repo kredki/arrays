@@ -148,4 +148,56 @@ public class CustomLinkedListTest {
 		assertEquals(9, list.size());
 		assertEquals(8, list.get(8).intValue());
 	}
+	
+	@Test
+	public void setTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.set(0, 20);
+		assertEquals(20, list.get(0).intValue());
+	}
+	
+	@Test
+	public void set2Test() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.set(2, 20);
+		assertEquals(20, list.get(2).intValue());
+	}
+	
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void setIndexOutOfBoundriesTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.set(12, 20);
+	}
+	
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void getIndexOutOfBoundriesTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		list.get(20);
+	}
+	
+	@Test (expected = IndexOutOfBoundsException.class)
+	public void removeIndexOutOfBoundriesTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		list.remove(20);
+	}
+	
+	@Test
+	public void indexOfTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		assertEquals(0, list.indexOf(0));
+		assertEquals(5, list.indexOf(5));
+		assertEquals(9, list.indexOf(9));
+	}
 }

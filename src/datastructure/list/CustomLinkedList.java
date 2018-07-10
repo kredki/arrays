@@ -229,7 +229,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 			Node<T> node = head;
 			if (node.getValue().equals(o)) {
 				head = node.getNextNode();
-				return true;
+				return 0;
 			}
 
 			int index = 0;
