@@ -164,13 +164,13 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			throw new IndexOutOfBoundsException();
 		} else {
 			Object removedObject = array[index];
-			for (int j = index + 1; j < size; j++) {
-				array[j - 1] = array[j];
-			}
-			for(int i = 0; i < this.size; i++) {
-				System.out.println(array[i]);
+			for (int j = index + 1; j < this.size; j++) {
+				this.array[j - 1] = this.array[j];
 			}
 			this.size--;
+			for(int i = 0; i < this.size; i++) {
+				System.out.println(array[i]);
+			}		
 			return (T) removedObject;
 		}
 	}
@@ -226,14 +226,14 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	 * Iterator for CustomArrayList
 	 */
 	private class CustomArrayListIterator<E> implements Iterator<E> {
-		private int index = 0;
+		private int index = -1;
 		private boolean isNextUsed = false;
 		private boolean isRemovedUsed = false;
 
 		@Override
 		public boolean hasNext() {
 			/* (TODO Starterkit 1) Please introduce a sensible implementation */
-			if (index >= CustomArrayList.this.size) {
+			if (index + 1 >= CustomArrayList.this.size) {
 				return false;
 			}
 			return true;
