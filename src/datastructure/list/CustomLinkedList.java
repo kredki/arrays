@@ -25,6 +25,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 		if (head == null)
 			return size;
 		else {
+			size++;
 			Node<T> node = head;
 			while (node.getNextNode() != null) {
 				size++;
@@ -74,7 +75,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
 		if (head == null) {
 			head = new Node<T>(t);
-			head.setNextNode(head);
+			head.setNextNode(null);
 			tail = head;
 			return true;
 		} else {
@@ -132,7 +133,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 				}
 				node = node.getNextNode();
 				i++;
-			} while (node.getNextNode() != null);
+			} while (node.getNextNode() != null || i == index);
 		}
 		return null;
 	}
@@ -153,7 +154,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 				}
 				node = node.getNextNode();
 				i++;
-			} while (node.getNextNode() != null);
+			} while (node.getNextNode() != null || i == index);
 		}
 		return null;
 	}
@@ -176,7 +177,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 				}
 				node = node.getNextNode();
 				i++;
-			} while (node.getNextNode() != null);
+			} while (node.getNextNode() != null || i == index);
 		}
 	}
 
@@ -198,7 +199,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 				}
 				node = node.getNextNode();
 				i++;
-			} while (node.getNextNode() != null);
+			} while (node.getNextNode() != null || i == index);
 		}
 		return null;
 	}
