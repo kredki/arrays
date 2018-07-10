@@ -147,12 +147,12 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 		if (!checkBoundries(index)) {
 			throw new IndexOutOfBoundsException();
 		} else {
-			for (int i = size; i < index + 1; i--) {
+			/*for (int i = size; i < index + 1; i--) {
 				array[i + 1] = array[i];
-			}
-			System.arraycopy(array, index, array, index +1, this.size - index);
+			}*/
+			System.arraycopy(this.array, index, this.array, index +1, this.size - index);
 			array[index] = element;
-			size++;
+			this.size++;
 		}
 	}
 
@@ -164,10 +164,13 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			throw new IndexOutOfBoundsException();
 		} else {
 			Object removedObject = array[index];
-			for (int i = index + 1; i < size; i++) {
-				array[i - 1] = array[i];
+			for (int j = index + 1; j < size; j++) {
+				array[j - 1] = array[j];
 			}
-			size--;
+			for(int i = 0; i < this.size; i++) {
+				System.out.println(array[i]);
+			}
+			this.size--;
 			return (T) removedObject;
 		}
 	}

@@ -238,4 +238,21 @@ public class CustomLinkedListTest {
 		assertEquals(2, list.size());
 		assertEquals(1, list.get(0).intValue());
 	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void removeExceptionIteratorTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		Iterator<Integer> iterator = list.iterator();
+		iterator.remove();
+	}
+	
+	@Test(expected = IllegalStateException.class)
+	public void removeExceptionIteratorTest2() {
+		List<Integer> list = new CustomLinkedList<>();
+		list.add(1);
+		Iterator<Integer> iterator = list.iterator();
+		iterator.next();
+		iterator.remove();
+		iterator.remove();
+	}
 }
