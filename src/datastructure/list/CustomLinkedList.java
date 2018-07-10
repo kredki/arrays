@@ -209,8 +209,16 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 				if (i == index) {
 					Node<T> newNextNode = node.getNextNode();
 					Node<T> newPreviousNode = node.getPreviousNode();
-					newPreviousNode.setNextNode(newNextNode);
-					newNextNode.setPreviousNode(newPreviousNode);
+					if (newPreviousNode != null) {
+						newPreviousNode.setNextNode(newNextNode);
+					}
+					if (newNextNode != null) {
+						newNextNode.setPreviousNode(newPreviousNode);
+					}
+					
+					if(index == 0) {
+						this.head = newNextNode;
+					}
 					return node.getValue();
 				}
 				node = node.getNextNode();
@@ -276,7 +284,9 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 				throw new NoSuchElementException();
 			} else {
 				index++;
-				return this.currentNode.getValue();
+				Node<E> result = currentNode;
+				currentNode = currentNode.getNextNode();
+				return result.getValue();
 			}
 		}
 

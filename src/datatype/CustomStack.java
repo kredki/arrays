@@ -1,5 +1,6 @@
 package datatype;
 
+import java.util.EmptyStackException;
 import java.util.List;
 
 /**
@@ -22,6 +23,9 @@ public class CustomStack<T> extends AbstractCustomStackAdapter<T> {
     @Override
     public T pop() {
         /* (TODO Starterkit 1) Please introduce a sensible implementation */
+    	if(storage.size() == 0) {
+    		throw new EmptyStackException();
+    	}
         return storage.remove(storage.size() - 1);
     }
 

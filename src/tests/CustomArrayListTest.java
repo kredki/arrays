@@ -1,7 +1,10 @@
 package tests;
 
 import static org.junit.Assert.*;
+
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import javax.naming.InitialContext;
 
@@ -199,5 +202,39 @@ public class CustomArrayListTest {
 	public void removeIndexOutOfBoundriesTest() {
 		List<Integer> list = new CustomArrayList<>();
 		list.remove(20);
+	}
+	
+	@Test
+	public void indexOfTest() {
+		List<Integer> list = new CustomArrayList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		assertEquals(0, list.indexOf(0));
+		assertEquals(5, list.indexOf(5));
+		assertEquals(9, list.indexOf(9));
+	}
+	
+	@Test
+	public void iteratorTest() {
+		List<Integer> list = new CustomArrayList<>();
+		for (int i = 0; i < 3; i++) {
+			list.add(i);
+		}
+		Iterator<Integer> iterator = list.iterator();
+		assertEquals(true, iterator.hasNext());
+		assertEquals(0, iterator.next().intValue());
+		assertEquals(true, iterator.hasNext());
+		assertEquals(1, iterator.next().intValue());
+		assertEquals(true, iterator.hasNext());
+		assertEquals(2, iterator.next().intValue());
+		assertEquals(false, iterator.hasNext());
+	}
+	
+	@Test(expected = NoSuchElementException.class)
+	public void emptyListIteratorTest() {
+		List<Integer> list = new CustomArrayList<>();	
+		Iterator<Integer> iterator = list.iterator();
+		iterator.next();
 	}
 }

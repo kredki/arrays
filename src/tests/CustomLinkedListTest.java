@@ -2,7 +2,9 @@ package tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -199,5 +201,41 @@ public class CustomLinkedListTest {
 		assertEquals(0, list.indexOf(0));
 		assertEquals(5, list.indexOf(5));
 		assertEquals(9, list.indexOf(9));
+	}
+	
+	@Test
+	public void iteratorTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 3; i++) {
+			list.add(i);
+		}
+		Iterator<Integer> iterator = list.iterator();
+		assertEquals(true, iterator.hasNext());
+		assertEquals(0, iterator.next().intValue());
+		assertEquals(true, iterator.hasNext());
+		assertEquals(1, iterator.next().intValue());
+		assertEquals(true, iterator.hasNext());
+		assertEquals(2, iterator.next().intValue());
+		assertEquals(false, iterator.hasNext());
+	}
+	
+	@Test(expected = NoSuchElementException.class)
+	public void emptyListIteratorTest() {
+		List<Integer> list = new CustomLinkedList<>();	
+		Iterator<Integer> iterator = list.iterator();
+		iterator.next();
+	}
+	
+	@Test
+	public void removeIteratorTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 3; i++) {
+			list.add(i);
+		}
+		Iterator<Integer> iterator = list.iterator();
+		iterator.next();
+		iterator.remove();
+		assertEquals(2, list.size());
+		assertEquals(1, list.get(0).intValue());
 	}
 }

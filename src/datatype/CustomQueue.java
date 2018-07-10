@@ -43,6 +43,9 @@ public class CustomQueue<T> extends AbstractCustomQueueAdapter<T> {
 	@Override
 	public T poll() {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
+		if(storage.size() == 0) {
+			return null;
+		}
 		return storage.remove(0);
 	}
 
