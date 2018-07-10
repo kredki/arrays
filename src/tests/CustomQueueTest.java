@@ -10,6 +10,7 @@ import datatype.CustomQueue;
 
 public class CustomQueueTest {
 	CustomQueue<Integer> queue;
+	
 	@Before
 	public void initQueue() {
 		List<Integer> storage = new ArrayList<>();
@@ -19,12 +20,28 @@ public class CustomQueueTest {
 		storage.add(3);
 		queue = new CustomQueue<>(storage);
 	}
+	
+	@Test
+	public void pollandpeekTest() {
+		assertEquals(0, queue.peek().intValue());
+		assertEquals(0, queue.poll().intValue());
+		assertEquals(1, queue.peek().intValue());
+		assertEquals(1, queue.poll().intValue());
+		assertEquals(2, queue.peek().intValue());
+		assertEquals(2, queue.poll().intValue());
+		assertEquals(3, queue.peek().intValue());
+		assertEquals(3 ,queue.poll().intValue());
+		assertEquals(null, queue.peek());
+		assertEquals(null ,queue.poll());
+		
+	}
+	
 	@Test
 	public void pollTest() {
-		assertEquals(0,queue.poll().intValue());
-		assertEquals(1,queue.poll().intValue());
-		assertEquals(2,queue.poll().intValue());
-		assertEquals(3,queue.poll().intValue());
+		assertEquals(0, queue.poll().intValue());
+		assertEquals(1, queue.poll().intValue());
+		assertEquals(2, queue.poll().intValue());
+		assertEquals(3, queue.poll().intValue());
 		
 	}
 	

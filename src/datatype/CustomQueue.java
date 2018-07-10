@@ -52,6 +52,9 @@ public class CustomQueue<T> extends AbstractCustomQueueAdapter<T> {
 	@Override
 	public T peek() {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
+		if(storage.isEmpty()) {
+			return null;
+		}
 		return storage.get(0);
 	}
 }

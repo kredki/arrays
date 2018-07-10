@@ -104,9 +104,6 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 					array[j - 1] = array[j];
 				}
 				size--;
-				for(int k = 0; k < this.size; k++) {
-				System.out.println(array[k]);
-				}
 				return true;
 			}
 		}
@@ -170,10 +167,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			for (int j = index + 1; j < this.size; j++) {
 				this.array[j - 1] = this.array[j];
 			}
-			this.size--;
-			for(int i = 0; i < this.size; i++) {
-				System.out.println(array[i]);
-			}		
+			this.size--;	
 			return (T) removedObject;
 		}
 	}
