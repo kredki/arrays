@@ -117,4 +117,35 @@ public class CustomLinkedListTest {
 		assertEquals(11, list.get(1).intValue());
 		assertEquals(1, list.get(2).intValue());
 	}
+	
+	@Test
+	public void containsEmptyListTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		assertEquals(false, list.contains(10));
+	}
+	
+	@Test
+	public void containsNullTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		list.add(null);
+		assertEquals(true, list.contains(null));
+	}
+	
+	@Test
+	public void containsSizeOneListTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		list.add(10);
+		assertEquals(true, list.contains(10));
+	}
+	
+	@Test
+	public void removeLastTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.remove(new Integer(9));
+		assertEquals(9, list.size());
+		assertEquals(8, list.get(8).intValue());
+	}
 }

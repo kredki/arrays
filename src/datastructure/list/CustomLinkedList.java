@@ -118,7 +118,9 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 					Node<T> newNextNode = node.getNextNode();
 					Node<T> newPreviousNode = node.getPreviousNode();
 					newPreviousNode.setNextNode(newNextNode);
-					newNextNode.setPreviousNode(newPreviousNode);
+					if (newNextNode != null) {
+						newNextNode.setPreviousNode(newPreviousNode);
+					}
 					return true;
 				}
 			}
