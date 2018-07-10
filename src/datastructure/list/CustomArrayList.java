@@ -98,12 +98,15 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	public boolean remove(Object o) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
 		changeArraySize();
-		for (int i = 0; i < size - 1; i++) {
+		for (int i = 0; i < this.size; i++) {
 			if (array[i].equals(o)) {
-				for (int j = i + 1; j < size; j++) {
+				for (int j = i + 1; j < this.size; j++) {
 					array[j - 1] = array[j];
 				}
 				size--;
+				for(int k = 0; k < this.size; k++) {
+				System.out.println(array[k]);
+				}
 				return true;
 			}
 		}
