@@ -52,13 +52,27 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 			return false;
 		else {
 			Node<T> node = head;
-			if (node.getValue().equals(o))
-				return true;
+			if (o != null) {
+				if (node.getValue().equals(o)) {
+					return true;
+				}
+			} else {
+				if (node.getValue() == null) {
+					return true;
+				}
+			}
 
 			while (node.getNextNode() != null) {
 				node = node.getNextNode();
-				if (node.getValue().equals(o))
-					return true;
+				if (o != null) {
+					if (node.getValue().equals(o)) {
+						return true;
+					}
+				} else {
+					if (node.getValue() == null) {
+						return true;
+					}
+				}
 			}
 		}
 		return false;
@@ -256,7 +270,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 			/* (TODO Starterkit 1) Please introduce a sensible implementation */
 			isNextUsed = true;
 			isRemovedUsed = false;
-			if(currentNode == null) {
+			if (currentNode == null) {
 				throw new NoSuchElementException();
 			} else {
 				index++;
@@ -267,7 +281,7 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 		@Override
 		public void remove() {
 			/* (TODO Starterkit 1)Please introduce a sensible implementation */
-			if(isNextUsed && !isRemovedUsed) {
+			if (isNextUsed && !isRemovedUsed) {
 				isNextUsed = false;
 				isRemovedUsed = true;
 				CustomLinkedList.this.remove(this.index);

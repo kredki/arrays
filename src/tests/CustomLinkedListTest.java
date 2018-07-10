@@ -56,4 +56,65 @@ public class CustomLinkedListTest {
 		assertEquals(8, list.get(9).intValue());
 		assertEquals(9, list.get(10).intValue());
 	}
+	
+	@Test
+	public void clearAndIsEmptyTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.clear();
+		assertEquals(0, list.size());
+		assertEquals(true, list.isEmpty());
+		list.add(2);
+		assertEquals(false, list.isEmpty());
+	}
+	
+	@Test
+	public void containsTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		assertEquals(true, list.contains(5));
+		assertEquals(false, list.contains(11));
+		assertEquals(false, list.contains(null));
+		list.add(null);
+		assertEquals(true, list.contains(null));
+	}
+	
+	@Test
+	public void removeTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.remove(new Integer(5));
+		assertEquals(9, list.size());
+		assertEquals(6, list.get(5).intValue());
+		list.remove(1);
+		assertEquals(8, list.size());
+		assertEquals(2, list.get(1).intValue());
+		
+		assertEquals(false, list.remove(new Integer(5)));
+		assertEquals(8, list.size());
+	}
+	
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void addExcptionTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		list.add(1, 5);
+	}
+	
+	@Test
+	public void addTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		for (int i = 0; i < 10; i++) {
+			list.add(i);
+		}
+		list.add(1, 11);
+		assertEquals(11, list.size());
+		assertEquals(11, list.get(1).intValue());
+		assertEquals(1, list.get(2).intValue());
+	}
 }
