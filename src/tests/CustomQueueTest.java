@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import datastructure.list.CustomLinkedList;
 import datatype.CustomQueue;
 
 public class CustomQueueTest {
@@ -13,7 +14,8 @@ public class CustomQueueTest {
 	
 	@Before
 	public void initQueue() {
-		List<Integer> storage = new ArrayList<>();
+		//List<Integer> storage = new ArrayList<>();
+		List<Integer> storage = new CustomLinkedList<>();
 		storage.add(0);
 		storage.add(1);
 		storage.add(2);
