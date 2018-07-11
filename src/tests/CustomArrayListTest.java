@@ -267,4 +267,11 @@ public class CustomArrayListTest {
 		iterator.remove();
 		iterator.remove();
 	}
+	
+	@Test
+	public void removeNullTest() {
+		List<Integer> list = new CustomArrayList<>();
+		list.add(null);
+		list.remove(null);
+	}
 }

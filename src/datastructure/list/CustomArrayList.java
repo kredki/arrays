@@ -59,10 +59,10 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	@Override
 	public boolean contains(Object o) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
-		if(o == null) {
+		if (o == null) {
 			return containsNull();
 		}
-		
+
 		for (int i = 0; i < size; i++) {
 			if (array[i].equals(o)) {
 				return true;
@@ -70,6 +70,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 		}
 		return false;
 	}
+
 	private boolean containsNull() {
 		for (int i = 0; i < size; i++) {
 			if (array[i] == null) {
@@ -98,13 +99,25 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 	public boolean remove(Object o) {
 		/* (TODO Starterkit 1) Please introduce a sensible implementation */
 		changeArraySize();
-		for (int i = 0; i < this.size; i++) {
-			if (array[i].equals(o)) {
-				for (int j = i + 1; j < this.size; j++) {
-					array[j - 1] = array[j];
+		if (o != null) {
+			for (int i = 0; i < this.size; i++) {
+				if (array[i].equals(o)) {
+					for (int j = i + 1; j < this.size; j++) {
+						array[j - 1] = array[j];
+					}
+					size--;
+					return true;
 				}
-				size--;
-				return true;
+			}
+		} else {
+			for (int i = 0; i < this.size; i++) {
+				if (array[i] == null) {
+					for (int j = i + 1; j < this.size; j++) {
+						array[j - 1] = array[j];
+					}
+					size--;
+					return true;
+				}
 			}
 		}
 		return false;
@@ -147,10 +160,11 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 		if (!checkBoundries(index)) {
 			throw new IndexOutOfBoundsException();
 		} else {
-			/*for (int i = size; i < index + 1; i--) {
-				array[i + 1] = array[i];
-			}*/
-			System.arraycopy(this.array, index, this.array, index +1, this.size - index);
+			/*
+			 * for (int i = size; i < index + 1; i--) { array[i + 1] = array[i];
+			 * }
+			 */
+			System.arraycopy(this.array, index, this.array, index + 1, this.size - index);
 			array[index] = element;
 			this.size++;
 		}
@@ -167,7 +181,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			for (int j = index + 1; j < this.size; j++) {
 				this.array[j - 1] = this.array[j];
 			}
-			this.size--;	
+			this.size--;
 			return (T) removedObject;
 		}
 	}
@@ -182,7 +196,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 		}
 		return -1;
 	}
-	
+
 	private boolean checkBoundries(int index) {
 		if (index < 0 || index >= this.size) {
 			return false;
@@ -190,7 +204,7 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			return true;
 		}
 	}
-	
+
 	public int getAllocatedSize() {
 		return array.length;
 	}
@@ -241,18 +255,18 @@ public class CustomArrayList<T> extends AbstractCustomListAdapter<T> {
 			/* (TODO Starterkit 1) Please introduce a sensible implementation */
 			isNextUsed = true;
 			isRemovedUsed = false;
-			if(index >= CustomArrayList.this.size || (index < 0 && !hasNext())) {
+			if (index >= CustomArrayList.this.size || (index < 0 && !hasNext())) {
 				throw new NoSuchElementException();
 			} else {
 				index++;
-				return (E)CustomArrayList.this.array[index];
+				return (E) CustomArrayList.this.array[index];
 			}
 		}
 
 		@Override
 		public void remove() {
 			/* (TODO Starterkit 1) Please introduce a sensible implementation */
-			if(isNextUsed && !isRemovedUsed) {
+			if (isNextUsed && !isRemovedUsed) {
 				isNextUsed = false;
 				isRemovedUsed = true;
 				CustomArrayList.this.remove(index);

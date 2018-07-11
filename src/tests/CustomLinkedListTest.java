@@ -255,4 +255,11 @@ public class CustomLinkedListTest {
 		iterator.remove();
 		iterator.remove();
 	}
+	
+	@Test
+	public void removeNullTest() {
+		List<Integer> list = new CustomLinkedList<>();
+		list.add(null);
+		list.remove(null);
+	}
 }

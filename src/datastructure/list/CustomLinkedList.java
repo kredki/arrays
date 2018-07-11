@@ -107,21 +107,40 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 			return false;
 		else {
 			Node<T> node = head;
-			if (node.getValue().equals(o)) {
-				head = node.getNextNode();
-				return true;
+			if (o != null) {
+				if (node.getValue().equals(o)) {
+					head = node.getNextNode();
+					return true;
+				}
+			} else {
+				if (node.getValue() == null) {
+					head = node.getNextNode();
+					return true;
+				}
 			}
 
 			while (node.getNextNode() != null) {
 				node = node.getNextNode();
-				if (node.getValue().equals(o)) {
-					Node<T> newNextNode = node.getNextNode();
-					Node<T> newPreviousNode = node.getPreviousNode();
-					newPreviousNode.setNextNode(newNextNode);
-					if (newNextNode != null) {
-						newNextNode.setPreviousNode(newPreviousNode);
+				if (o != null) {
+					if (node.getValue().equals(o)) {
+						Node<T> newNextNode = node.getNextNode();
+						Node<T> newPreviousNode = node.getPreviousNode();
+						newPreviousNode.setNextNode(newNextNode);
+						if (newNextNode != null) {
+							newNextNode.setPreviousNode(newPreviousNode);
+						}
+						return true;
 					}
-					return true;
+				} else {
+					if (node.getValue() == null) {
+						Node<T> newNextNode = node.getNextNode();
+						Node<T> newPreviousNode = node.getPreviousNode();
+						newPreviousNode.setNextNode(newNextNode);
+						if (newNextNode != null) {
+							newNextNode.setPreviousNode(newPreviousNode);
+						}
+						return true;
+					}
 				}
 			}
 		}
@@ -215,8 +234,8 @@ public class CustomLinkedList<T> extends AbstractCustomListAdapter<T> {
 					if (newNextNode != null) {
 						newNextNode.setPreviousNode(newPreviousNode);
 					}
-					
-					if(index == 0) {
+
+					if (index == 0) {
 						this.head = newNextNode;
 					}
 					return node.getValue();
